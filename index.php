@@ -5,29 +5,18 @@
  * Date: 9/12/2017
  * Time: 9:53 AM
  */
-?>
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <title>MicroCMS - Home</title>
-</head>
-<body>
-<header>
-    <h1>MicroCMS</h1>
-</header>
-<?php
-$bdd = new PDO('mysql:host=localhost;dbname=microcms;charset=utf8', 'microcms_user', 'secret');
-$articles = $bdd->query('select * from t_article order by art_id desc');
-foreach ($articles as $article): ?>
-    <article>
-        <h2><?php echo $article['art_title'] ?></h2>
-        <p><?php echo $article['art_content'] ?></p>
-    </article>
-<?php endforeach ?>
-<footer class="footer">
-    <a href="https://github.com/bpesquet/OC-MicroCMS">MicroCMS</a> is a minimalistic CMS built as a showcase for modern PHP development.
-</footer>
-</body>
-</html>
+
+/* controller */
+require 'Controller/Controller.php';
+$controller = Controller::getInstance();
+
+if($controller->isConnectedUser() == true) {
+    /* model */
+    require 'Models/index.model.php';
+    $articles = getArticles();
+
+    /* view */
+    require 'Views/index.view.php';
+}else{
+    header("Location: auth.php");
+}
