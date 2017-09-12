@@ -1,0 +1,11 @@
+/**
+ * Created by PhpStorm.
+ * User: Paul
+ * Date: 9/12/2017
+ * Time: 11:11 AM
+ */
+.footer {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    text-align: center;
+}
